@@ -18,6 +18,31 @@ E2E tests verify this entire journey.
 
 ---
 
+## E2E Test Flow
+
+```mermaid
+sequenceDiagram
+    participant Browser
+    participant WebServer
+    participant AppServer
+    participant Database
+
+    Browser->>WebServer: GET /login
+    WebServer-->>Browser: Login page HTML
+
+    Browser->>AppServer: POST /api/login {email, password}
+    AppServer->>Database: SELECT user WHERE email=?
+    Database-->>AppServer: user row
+    AppServer-->>Browser: 200 {token}
+
+    Browser->>AppServer: GET /api/dashboard\nAuthorization: Bearer token
+    AppServer->>Database: SELECT orders WHERE user_id=?
+    Database-->>AppServer: orders
+    AppServer-->>Browser: 200 Dashboard data
+```
+
+---
+
 ## E2E vs. Integration vs. Unit
 
 | | Unit | Integration | E2E |

@@ -16,6 +16,21 @@ BDD solves this by expressing tests in near-English structured prose (Gherkin) t
 
 ---
 
+## The BDD Workflow
+
+```mermaid
+flowchart LR
+    PO[Product Owner\nwrites scenarios] --> Feature[.feature file\nGherkin syntax]
+    Feature --> Steps[Developer writes\nstep definitions]
+    Steps --> Run[pytest-bdd runs\nboth together]
+    Run --> Pass{Pass?}
+    Pass -- No --> Impl[Implement feature]
+    Impl --> Run
+    Pass -- Yes --> Ship[Feature complete\nand documented]
+```
+
+---
+
 ## Gherkin — The BDD Language
 
 Gherkin is a structured language for writing test scenarios. Every scenario has three sections:

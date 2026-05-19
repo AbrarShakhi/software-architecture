@@ -14,6 +14,22 @@ A unit is typically a function or a class method. A unit test:
 
 ---
 
+## The Unit Testing Workflow
+
+```mermaid
+flowchart LR
+    A([Write failing test]) --> B([Run — RED])
+    B --> C([Write implementation])
+    C --> D([Run — GREEN])
+    D --> E([Refactor])
+    E --> F([Run all tests])
+    F --> G{All pass?}
+    G -- Yes --> A
+    G -- No --> E
+```
+
+---
+
 ## The AAA Pattern
 
 Every unit test follows three steps: **Arrange → Act → Assert**.

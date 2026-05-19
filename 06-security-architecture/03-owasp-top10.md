@@ -6,6 +6,23 @@ The OWASP Top 10 (2021 edition) is the authoritative list of the most common and
 
 ---
 
+## Attack Surface Overview
+
+```mermaid
+flowchart TD
+    Request([Incoming HTTP Request]) --> AC{A01: Access\nControl check}
+    AC -- Fails --> Breach1([Data exposure / privilege escalation])
+    AC -- Passes --> Inject{A03: Injection\ncheck}
+    Inject -- Fails --> Breach2([SQL / command injection])
+    Inject -- Passes --> Auth{A07: Auth\ncheck}
+    Auth -- Fails --> Breach3([Account takeover])
+    Auth -- Passes --> Crypto{A02: Crypto\ncheck}
+    Crypto -- Fails --> Breach4([Data exposure])
+    Crypto -- Passes --> App([Legitimate response])
+```
+
+---
+
 ## A01 — Broken Access Control
 
 The most critical. Users can act outside their intended permissions — viewing other users' data, escalating privileges, accessing admin functions.
